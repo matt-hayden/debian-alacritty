@@ -1,4 +1,15 @@
 #! /bin/sh
+#
+# If running under systemd:
+#   `alacritty --daemon` will set ALACRITTY_SOCKET for all new processes launched by your desktop session.
+# Calling this wrapper from anywhere will create-window.
+#
+# If not running under systemd, rely on your shell to pass ALACRITTY_SOCKET:
+#    alias alacritty="/usr/libexec/alacritty-wrapper"
+# Calling that alias from such a shell will create-window.
+#
+# In both cases, you can avoid this by calling /usr/bin/alacritty.
+#
 set -e
 if [ -S "$ALACRITTY_SOCKET" ]; then
 	alacritty msg create-window "$@"

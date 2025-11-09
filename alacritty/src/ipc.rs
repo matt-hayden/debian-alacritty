@@ -6,6 +6,7 @@ use std::io::{BufRead, BufReader, Error as IoError, ErrorKind, Result as IoResul
 use std::net::Shutdown;
 use std::os::unix::net::{UnixListener, UnixStream};
 use std::path::PathBuf;
+use std::process::{Command, Stdio};
 use std::sync::Arc;
 use std::{env, fs, process};
 
@@ -39,7 +40,16 @@ pub fn spawn_ipc_socket(
 
     unsafe { env::set_var(ALACRITTY_SOCKET_ENV, socket_path.as_os_str()) };
     if options.daemon {
-        println!("ALACRITTY_SOCKET={}; export ALACRITTY_SOCKET", socket_path.display());
+        println!("{0}={1}; export {0}", ALACRITTY_SOCKET_ENV, socket_path.display());
+        #[cfg(not(windows))]
+        Command::new("systemctl")
+            .arg("--user")
+            .arg("set-environment")
+            .arg(format!("{}={}", ALACRITTY_SOCKET_ENV, socket_path.display()))
+            .stdout(Stdio::null())
+            .stderr(Stdio::null())
+            .spawn()
+            .expect("Could not set systemd environment");
     }
 
     // Spawn a thread to listen on the IPC socket.
