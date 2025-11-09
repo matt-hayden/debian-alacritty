@@ -25,31 +25,10 @@ fn main() {
 
     #[cfg(target_os = "linux")]
     {
-        let terminfo_src = Path::new("extra/alacritty.info");
-        println!("cargo:rerun-if-changed={}", terminfo_src.display());
-        if terminfo_src.exists() {
-            let terminfo_dest = Path::new(&dest).join("terminfo");
-            std::fs::create_dir_all(&terminfo_dest).ok();
-
-            match Command::new("tic")
-                .args([
-                    "-x", // enable extended capabilities
-                    terminfo_src.to_str().unwrap(),
-                    "-o", terminfo_dest.to_str().unwrap(),
-                ])
-                .status()
-            {
-                Ok(status) if status.success() => {
-                    println!("cargo:warning=Built terminfo under {}", terminfo_dest.display());
-                }
-                Ok(status) => {
-                    println!("cargo:warning=`tic` exited with status {:?}", status.code());
-                }
-                Err(e) => {
-                    println!("cargo:warning=Could not run `tic`: {e}");
-                }
-            }
-        }
+        let scriptdir= Path::new("scripts");
+        let scriptname = scriptdir.join("unix-package.sh"); // script takes argument OUT_DIR
+        let status = Command::new(&scriptname).arg(dest).status();
+        println!("cargo:warning={scriptname:?} exited {status:?}");
     }
 
     #[cfg(windows)]

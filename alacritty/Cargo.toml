@@ -110,6 +110,14 @@ section = "x11"
 priority = "optional"
 extended-description-file = "extended-description"
 assets = [
+    ["target/release/build/alacritty-*/out/usr/share/man/man1/alacritty.1.gz", "usr/share/man/man1/", "644"],
+    ["target/release/build/alacritty-*/out/usr/share/man/man1/alacritty-msg.1.gz", "usr/share/man/man1/", "644"],
+    ["target/release/build/alacritty-*/out/usr/share/man/man5/alacritty.5.gz", "usr/share/man/man5/", "644"],
+    ["target/release/build/alacritty-*/out/usr/share/man/man5/alacritty-bindings.5.gz", "usr/share/man/man5/", "644"],
+    ["target/release/build/alacritty-*/out/usr/share/terminfo/a/alacritty", "usr/share/terminfo/a/", "644"],
+    ["target/release/build/alacritty-*/out/usr/share/terminfo/a/alacritty-direct", "usr/share/terminfo/a/", "644"],
+    ["target/release/build/alacritty-*/out/usr/share/terminfo/a/alacritty+common", "usr/share/terminfo/a/", "644"],
+
     ["target/release/alacritty", "usr/bin/", "755"],
     ["extra/linux/Alacritty.desktop", "usr/share/applications/", "644"],
     ["extra/linux/alacritty-wrapper", "usr/libexec/", "755"],
@@ -117,7 +125,4 @@ assets = [
     ["extra/completions/alacritty.bash", "usr/share/bash-completion/completions/alacritty", "644"],
     ["extra/completions/_alacritty", "usr/share/zsh/vendor-completions/", "644"],
     ["extra/completions/alacritty.fish", "usr/share/fish/vendor_completions.d/", "644"],
-    ["target/release/build/alacritty-*/out/terminfo/a/alacritty", "usr/share/terminfo/a", "644"],
-    ["target/release/build/alacritty-*/out/terminfo/a/alacritty+common", "usr/share/terminfo/a", "644"],
-    ["target/release/build/alacritty-*/out/terminfo/a/alacritty-direct", "usr/share/terminfo/a", "644"]
 ]
