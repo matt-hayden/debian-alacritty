@@ -113,7 +113,7 @@ assets = [
     ["target/release/alacritty", "usr/bin/", "755"],
     ["extra/linux/Alacritty.desktop", "usr/share/applications/", "644"],
     ["extra/linux/alacritty-wrapper", "usr/libexec/", "755"],
-    ["extra/logo/alacritty-term.svg", "usr/share/icons/hicolor/scalable/apps/", "644"],
+    ["extra/logo/*.svg", "usr/share/icons/hicolor/scalable/apps/", "644"],
     ["extra/completions/alacritty.bash", "usr/share/bash-completion/completions/alacritty", "644"],
     ["extra/completions/_alacritty", "usr/share/zsh/vendor-completions/", "644"],
     ["extra/completions/alacritty.fish", "usr/share/fish/vendor_completions.d/", "644"],

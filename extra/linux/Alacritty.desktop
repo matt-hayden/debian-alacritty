@@ -2,7 +2,7 @@
 Type=Application
 TryExec=alacritty
 Exec=/usr/libexec/alacritty-wrapper
-Icon=Alacritty
+Icon=alacritty-term
 Terminal=false
 Categories=System;TerminalEmulator;
 
